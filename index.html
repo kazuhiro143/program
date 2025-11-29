@@ -4,32 +4,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フルーツ飴 atom | 大阪・堺市のフルーツ飴専門店</title>
+    
     <style>
-        /* 簡易的なスタイルをインラインで記述 (実際は外部CSS推奨) */
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; color: #333; }
-        header { background-color: #f7e6e6; padding: 15px 20px; text-align: center; }
-        nav ul { list-style: none; padding: 0; margin: 10px 0 0; display: flex; justify-content: center; }
-        nav ul li { margin: 0 15px; }
-        nav ul li a { text-decoration: none; color: #b51f1f; font-weight: bold; }
-        .hero { position: relative; text-align: center; color: white; }
-        .hero img { width: 100%; height: auto; display: block; max-height: 500px; object-fit: cover; }
-        .hero-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.5); padding: 20px 40px; border-radius: 10px; }
-        h1 { font-size: 2.5em; margin: 0; }
-        h2 { text-align: center; padding: 40px 0 20px; font-size: 2em; color: #b51f1f; }
-        .section-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .concept-content, .menu-grid { display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; text-align: center; }
-        .concept-content img { max-width: 400px; width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; }
-        .concept-text { max-width: 500px; text-align: left; }
-        .menu-item { width: 300px; margin: 20px; border: 1px solid #ddd; padding: 15px; border-radius: 8px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); }
-        .menu-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
-        footer { background-color: #333; color: white; text-align: center; padding: 20px 0; font-size: 0.9em; }
-        /* レスポンシブ対応の簡易化 */
+        /* --- リセットと基本設定 --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'メイリオ', Meiryo, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fcfcfc;
+        }
+
+        a {
+            text-decoration: none;
+            color: #b51f1f;
+            transition: opacity 0.3s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            background-color: #fdf5f5; /* 柔らかいピンク */
+            padding: 15px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 2px solid #f0d0d0;
+        }
+
+        header img {
+            height: 60px; /* ロゴサイズ */
+            margin-bottom: 10px;
+        }
+
+        /* --- ナビゲーション --- */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #b51f1f; /* メインカラー（赤系） */
+            font-weight: bold;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        /* ナビゲーションのホバーアニメーション */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #b51f1f;
+            transition: width 0.3s ease-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- ヒーローセクション (メインビジュアル) --- */
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover; /* 画像がセクションに合わせてトリミングされるようにする */
+            display: block;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(181, 31, 31, 0.7); /* メインカラーの半透明背景 */
+            padding: 30px 60px;
+            border-radius: 10px;
+            animation: fadeIn 1.5s ease-out; /* アニメーションを追加 */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: white;
+            color: #b51f1f;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .hero .btn:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* --- 共通セクションスタイル --- */
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #b51f1f;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f0d0d0;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- コンセプトセクション --- */
+        .concept-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .concept-content img {
+            max-width: 45%;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .concept-text {
+            max-width: 50%;
+        }
+
+        .concept-text h3 {
+            font-size: 1.8em;
+            color: #555;
+            margin-bottom: 15px;
+            border-left: 5px solid #b51f1f;
+            padding-left: 10px;
+        }
+
+        /* --- メニューセクション --- */
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .menu-item {
+            width: calc(33% - 20px); /* 3列表示 */
+            min-width: 280px;
+            background-color: white;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px); /* ホバーで少し浮かせる */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .menu-item h3 {
+            color: #b51f1f;
+            margin-bottom: 5px;
+        }
+
+        .menu-item p:last-child {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .all-menu-btn {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .all-menu-btn a {
+            padding: 15px 40px;
+            background-color: #b51f1f;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* --- アクセスセクション --- */
+        #access {
+            background-color: #f7f7f7;
+        }
+
+        #access p {
+            margin-bottom: 10px;
+        }
+
+        .map-placeholder {
+            height: 350px;
+            background-color: #e8e8e8;
+            line-height: 350px;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        /* --- フッター --- */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ccc;
+        }
+
+        /* --- レスポンシブデザイン (モバイルファースト) --- */
         @media (max-width: 768px) {
-            .concept-content { flex-direction: column; }
-            .hero-text h1 { font-size: 1.8em; }
-            .hero-text p { font-size: 1em; }
-            nav ul { flex-direction: column; align-items: center; }
-            nav ul li { margin: 5px 0; }
+            
+            /* ナビゲーション */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            /* ヒーロー */
+            .hero-img {
+                height: 350px;
+            }
+            .hero-text {
+                padding: 20px 30px;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+
+            /* コンセプト */
+            .concept-content {
+                flex-direction: column; /* 縦に並べる */
+            }
+            .concept-content img, .concept-text {
+                max-width: 100%;
+            }
+            .concept-text {
+                text-align: center;
+            }
+            .concept-text h3 {
+                text-align: center;
+                border-left: none;
+                padding-left: 0;
+                margin-top: 30px;
+            }
+
+            /* メニュー */
+            .menu-item {
+                width: 90%; /* モバイルでは1列にする */
+            }
         }
     </style>
 </head>
@@ -51,29 +344,26 @@
     <main>
         
         <section class="hero">
-            <img src="./images/main_visual.jpg" alt="ジューシーなフルーツ飴のイメージ">
+            <img class="hero-img" src="./images/main_visual.jpg" alt="ジューシーなフルーツ飴のイメージ">
             <div class="hero-text">
                 <h1>美味しさ、楽しさ、無限大！</h1>
                 <p>新鮮なフルーツとカリッとした飴のハーモニー</p>
-                <a href="#menu" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #b51f1f; color: white; text-decoration: none; border-radius: 5px;">メニューを見る</a>
+                <a href="#menu" class="btn">メニューを見る</a>
             </div>
         </section>
-
-        <hr>
 
         <section id="concept" class="section-container">
             <h2>🍎 こだわり 🍊</h2>
             <div class="concept-content">
+                <img src="./images/concept_image.jpg" alt="フルーツ飴を調理しているイメージ">
                 <div class="concept-text">
                     <h3>厳選フルーツとこだわりの飴</h3>
                     <p>当店は、自然の恵みである**フルーツの美味しさを最大限に引き出し**、それを楽しさ満載の飴としてお届けする専門店です。新鮮でジューシーなフルーツを厳選し、口の中で広がる素晴らしい味わいをお届けします。一粒ずつ丁寧に仕上げられたフルーツ飴で、口いっぱい広がる幸せを感じてください。</p>
                     <p>アサイーボウルやスムージーなど、季節のフルーツを使った限定メニューも人気です！</p>
                 </div>
-                <img src="./images/concept_image.jpg" alt="フルーツ飴を調理しているイメージ">
             </div>
         </section>
 
-        <hr>
 
         <section id="menu" class="section-container">
             <h2>🍡 MENU おすすめメニュー 🍓</h2>
@@ -97,12 +387,10 @@
                     <p>¥1,600</p>
                 </div>
                 </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="menu.html" style="padding: 10px 30px; background-color: #b51f1f; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">全メニューを見る</a>
+            <div class="all-menu-btn">
+                <a href="menu.html">全メニューを見る</a>
             </div>
         </section>
-
-        <hr>
 
         <section id="access" class="section-container" style="text-align: center;">
             <h2>📍 アクセス・営業時間 🕒</h2>
@@ -116,7 +404,7 @@
                 【定休日】なし<br>
                 【電話】072-242-3434
             </p>
-            <div style="height: 300px; background-color: #eee; line-height: 300px; text-align: center; margin-top: 15px;">
+            <div class="map-placeholder">
                 [Googleマップ埋め込みエリア]
             </div>
         </section>
@@ -125,8 +413,59 @@
 
     <footer>
         <p>&copy; 2025 フルーツ飴 atom. All Rights Reserved.</p>
-        <p><a href="privacy.html" style="color: white;">プライバシーポリシー</a></p>
+        <p><a href="privacy.html">プライバシーポリシー</a></p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. スムーズスクロールの実装
+            // ページ内リンク（#がついたURL）をクリックしたときに、滑らかにスクロールする
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // 2. スクロール時のフェードインアニメーション
+            // 特定のクラスを持つ要素が画面に入ってきたときに表示する
+            const fadeInElements = document.querySelectorAll('.section-container');
+            
+            const options = {
+                root: null, // ビューポートをルートとする
+                rootMargin: '0px',
+                threshold: 0.2 // 要素の20%が見えたら発火
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        // 一度表示したら監視を停止
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            fadeInElements.forEach(element => {
+                // 初期状態では非表示にし、少し下にずらしておく
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                observer.observe(element);
+            });
+
+        });
+    </script>
 </body>
 </html>
