@@ -59,7 +59,7 @@
         letter-spacing: 1px;
         color: white;
         flex-shrink: 0; 
-        z-index: 1001; /* ロゴを最前面に */
+        z-index: 1001;
     }
 
     /* PC版ナビゲーション */
@@ -89,7 +89,7 @@
         font-size: 1.8em;
         margin-left: 15px; 
         flex-shrink: 0;
-        z-index: 1001; /* トグルボタンを最前面に */
+        z-index: 1001;
     }
 
    /* ヒーローセクション (背景画像と高さの修正 - 安定性向上) */
@@ -101,8 +101,6 @@
     background-repeat: no-repeat; 
     background-position: center; 
     /* ↑↑↑ 背景画像の設定ここまで ↑↑↑ */
-    
-    /* background-attachment: fixed; */ /* モバイル安定性のため削除 */
     
     /* ↓↓↓ 高さを内容と画像に合わせて自動調整 ↓↓↓ */
     height: auto; 
@@ -218,7 +216,8 @@
     /* Instagramセクション用CSS */
     .insta-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* PC版：1行に3列を固定（修正箇所） */
+        grid-template-columns: repeat(3, 1fr); 
         gap: 15px;
         margin-top: 30px;
         max-width: 800px;
@@ -439,9 +438,9 @@
             height: 200px;
         }
         
-        /* Instagram */
+        /* Instagram (モバイル版も3列で固定) */
         .insta-grid {
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 修正箇所 */
             gap: 10px;
         }
         
