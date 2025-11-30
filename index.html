@@ -3,268 +3,645 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>atom フルーツ飴 | 大阪・堺市のフルーツ飴専門店</title>
-    
+    <title>🍎 蜜香 - 極上のフルーツ飴</title>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* --- リセットと基本設定 --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    /* テーマカラーとフォント設定 */
+    :root {
+        --primary-color: #C5292A; /* 深みのあるキャンディレッド */
+        --secondary-color: #FFD700; /* ゴールド/キャラメル色 */
+        --text-color: #333333;
+        --bg-light: #5B453D; /* 背景全体の色 (シックな濃い茶色/木目調を表現) */
+        --content-bg: rgba(255, 255, 255, 0.9); /* コンテンツの背景色 (半透明の白) */
+        --font-main: 'Shippori Mincho', serif;
+        --font-sub: 'Poppins', sans-serif;
+    }
 
-        body {
-            /* 木目調の背景を再現 (画像は適宜差し替え) */
-            background-image: url(./images/bg_wood.png); 
-            background-repeat: repeat;
-            font-family: 'Hiragino Sans', 'メイリオ', Meiryo, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: #b51f1f;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.7;
-        }
+    /* リセットと基本スタイル */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
         
-        /* --- ヘッダー --- */
+        background-color: var(--bg-light);
+        background-image: url('wood-texture-bg.jpg'); 
+        background-repeat: repeat;
+        
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
+
+    /* ヘッダー/ナビゲーション */
+    header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 10px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        box-sizing: border-box; 
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 0; 
+        transition: opacity 1s ease-in-out;
+    }
+
+    .logo {
+        font-size: 1.8em;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: white;
+        flex-shrink: 0; 
+        z-index: 1001; /* ロゴを最前面に */
+    }
+
+    /* PC版ナビゲーション */
+    nav {
+        display: flex;
+        flex-shrink: 0; 
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-family: var(--font-sub);
+        font-weight: 600;
+        transition: color 0.3s;
+        font-size: 0.95em;
+    }
+
+    nav a:hover {
+        color: var(--secondary-color);
+    }
+
+    /* ハンバーガーメニュー (モバイル用) */
+    .menu-toggle {
+        display: none; 
+        cursor: pointer;
+        font-size: 1.8em;
+        margin-left: 15px; 
+        flex-shrink: 0;
+        z-index: 1001; /* トグルボタンを最前面に */
+    }
+
+   /* ヒーローセクション (背景画像と高さの修正 - 安定性向上) */
+.hero {
+    /* ↓↓↓ 背景画像の設定 (幅100%で切り取らず全体表示) ↓↓↓ */
+    background-image: url('hero-bg.jpg'); 
+    background-color: var(--primary-color); 
+    background-size: 100% auto; /* 幅100%、高さ自動 */
+    background-repeat: no-repeat; 
+    background-position: center; 
+    /* ↑↑↑ 背景画像の設定ここまで ↑↑↑ */
+    
+    /* background-attachment: fixed; */ /* モバイル安定性のため削除 */
+    
+    /* ↓↓↓ 高さを内容と画像に合わせて自動調整 ↓↓↓ */
+    height: auto; 
+    padding-top: 100px; 
+    padding-bottom: 30px; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; 
+    position: relative;
+    
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.2); 
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        opacity: 0; 
+        transform: translateY(20px); 
+        transition: opacity 1s, transform 1s;
+    }
+
+    .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 5px;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
+        letter-spacing: 2px;
+    }
+
+    .hero p {
+        font-family: var(--font-main);
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+        white-space: pre-wrap; 
+    }
+
+    .btn-primary {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+        padding: 12px 30px;
+        text-decoration: none;
+        font-family: var(--font-sub);
+        font-weight: 600;
+        border-radius: 50px;
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background-color: #FFEB80;
+        transform: translateY(-2px);
+    }
+
+    /* 一般的なセクション */
+    section {
+        padding: 80px 5%;
+        text-align: center;
+        
+        background-color: var(--content-bg);
+        margin: 20px auto; 
+        
+        max-width: 1100px;
+        border-radius: 10px; 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    }
+
+    section:nth-child(even) {
+        background-color: var(--content-bg);
+    }
+
+    /* スクロールアニメーション用クラス */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h2 {
+        font-family: var(--font-main);
+        font-size: 2.5em;
+        color: var(--primary-color);
+        margin-bottom: 40px;
+        border-bottom: 3px solid var(--secondary-color);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+    
+    /* Instagramセクション用CSS */
+    .insta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 30px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .insta-placeholder {
+        width: 100%;
+        padding-top: 100%; /* 1:1のアスペクト比を維持 */
+        position: relative;
+        background-color: #F8F8F8;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8em;
+        color: #999;
+    }
+    .insta-placeholder::before {
+        content: '\f16d'; /* Instagramアイコン */
+        font-family: 'Font Awesome 6 Brands';
+        font-size: 2em;
+        color: #d62976;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    /* お店についてセクション */
+    .about-content {
+        display: flex;
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    .about-text {
+        flex: 1;
+        padding-right: 30px;
+    }
+    .about-image {
+        flex: 1;
+        max-width: 450px;
+    }
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* メニュー/商品グリッド */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .menu-item {
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .menu-item:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 5px solid var(--primary-color);
+    }
+
+    .item-details {
+        padding: 20px;
+    }
+
+    .item-details h3 {
+        font-family: var(--font-main);
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.5em;
+    }
+
+    .item-details p {
+        font-family: var(--font-sub);
+        font-size: 0.9em;
+        color: var(--text-color);
+    }
+    
+    /* アクセス情報用CSS (左揃えのために修正) */
+    .access-info {
+        text-align: left; /* ★修正: 左揃えに設定 */
+        max-width: 500px; 
+        margin: 0 auto 30px auto; 
+    }
+    .access-info p {
+        margin: 10px 0;
+        font-size: 1.0em;
+    }
+    .access-info strong {
+        color: var(--primary-color);
+    }
+
+
+    /* フッター */
+    footer {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 40px 5%;
+        text-align: center;
+    }
+
+    footer p {
+        margin: 5px 0;
+        font-family: var(--font-sub);
+        font-size: 0.9em;
+    }
+    footer a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+    footer a:hover {
+        color: white;
+    }
+
+    /* ====================================
+       モバイル対応 (Media Queries)
+       ==================================== */
+
+    /* 画面幅 768px 以下の場合に適用 */
+    @media (max-width: 768px) {
+        
         header {
-            background-color: white;
-            padding: 10px 5%;
-            display: flex;
-            justify-content: space-between; /* ロゴとナビを左右に配置 */
-            align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-left img {
-            height: 40px; /* ロゴサイズ */
-            margin-right: 10px;
-            /* 実際の画像では「Candy apple」のロゴ画像と「フルーツ飴」のテキストが見える */
+            padding: 10px 20px; 
         }
         
-        /* === 修正点1: ヘッダーのロゴ部分を画像に合わせてテキストに変更 === */
-        .header-left .logo-text {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #e24e4e;
-        }
-        .header-left span {
-            font-size: 0.8em;
-            color: #555;
-            margin-left: 5px;
-        }
-
-        /* --- ナビゲーション --- */
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        nav ul li {
-            margin: 0 12px;
-        }
-
-        nav ul li a {
-            color: #333;
-            font-weight: bold;
-            font-size: 0.9em;
-            padding: 5px 0;
-        }
-        
-        /* --- メインコンテンツの枠線 --- */
-        .main-frame {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 30px 20px;
-            background-color: white;
-            border: 8px solid #e24e4e; 
-            border-radius: 40px; 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-container {
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
-
-        /* --- ヒーローセクション (メインビジュアル) --- */
-        .hero {
-            position: relative;
-            text-align: center;
-            overflow: hidden;
-            border-radius: 30px; 
-        }
-        
-        .hero-overlay-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px; /* メインコンテンツの幅を調整 */
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* === 修正点2: ヒーローコンテンツを新しい画像に合わせて調整 === */
-        .hero-main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* PCメニューを非表示 */
+        nav {
+            display: none; 
+            flex-direction: column; 
+            position: absolute; 
+            top: 100%; 
+            left: 0;
             width: 100%;
-            padding: 40px 0;
+            background-color: var(--primary-color); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
-        .hero-main-content img {
-            width: 50%;
-            max-width: 300px;
-            height: auto;
-            margin-right: 20px;
+        /* モバイルメニュー展開時 */
+        nav.open {
+            display: flex; 
         }
 
-        .hero-text-box {
-            padding: 10px 20px;
-            border-radius: 10px;
+        nav a {
+            margin: 0;
+            padding: 15px 20px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: left;
         }
-        
-        .hero-text-box .tag {
-            background-color: #e24e4e;
-            color: white;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-bottom: 5px;
+
+        .menu-toggle {
+            display: block; 
+            margin-left: auto; 
         }
         
-        .hero-text-box h1 {
-            font-size: 1.8em;
-            color: #e24e4e;
-            margin-top: 5px;
+        /* 一般的なセクション */
+        section {
+            padding: 40px 5%; 
+            margin: 15px 15px; 
+            max-width: none; 
         }
         
-        .hero-text-box p {
-            font-size: 1.1em;
-            color: #333;
-        }
-        
-        /* 上下の赤帯の繰り返しテキスト */
-        .red-strip {
-            width: 100%;
-            text-align: center;
-            background: rgba(226, 78, 78, 1);
-            color: white;
-            font-size: 0.8em;
-            padding: 5px 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        
-        /* --- Instagram セクション --- */
-        .instagram-section {
-            text-align: center; 
-            padding: 40px 0; 
+        .hero h1 {
             font-size: 1.5em;
         }
-
-        /* --- メニュー、フッターなどは前回のコードのまま --- */
-        h2.menu-title {
-            /* ... (省略) ... */
+        .hero p {
+            font-size: 1em;
         }
+        
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+        
+        /* お店についてセクション */
+        .about-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        .about-text {
+            padding-right: 0;
+            padding-bottom: 20px;
+        }
+        .about-image {
+            max-width: 100%;
+        }
+
+        /* メニュー */
         .menu-grid {
-            /* ... (省略) ... */
+            grid-template-columns: 1fr;
         }
-        .menu-item {
-            /* ... (省略) ... */
+        .menu-item img {
+            height: 200px;
         }
-        #shop {
-            /* ... (省略) ... */
+        
+        /* Instagram */
+        .insta-grid {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
         }
-        footer {
-            /* ... (省略) ... */
+        
+        /* アクセス情報（モバイル） */
+        .access-info {
+            max-width: 100%; 
         }
-
-        /* --- レスポンシブデザイン --- */
-        @media (max-width: 768px) {
-            /* ... (省略) ... */
-        }
-    </style>
+        
+    }
+</style>
 </head>
 <body>
-
-    <header>
-        <div class="header-left">
-            <span class="logo-text">Candy apple</span>
-            <span>フルーツ飴</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">TOP</a></li>
-                <li><a href="news.html">NEWS 新着情報</a></li>
-                <li><a href="#menu">MENU メニュー</a></li>
-                <li><a href="#shop">SHOP 店舗情報</a></li>
-                <li><a href="contact.html">お問い合わせ CONTACT</a></li>
-            </ul>
+    
+    <header id="main-header">
+        <div class="logo">🍎 蜜香</div>
+        <i class="fas fa-bars menu-toggle" id="menu-toggle"></i>
+        <nav id="main-nav">
+            <a href="#about">お店について</a>
+            <a href="#menu">メニュー</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#access">アクセス</a>
+            <a href="tel:00-0000-0000">電話</a>
         </nav>
     </header>
 
-    <div class="main-frame">
-        <main>
+    <section class="hero">
+        <div class="hero-content" id="hero-content">
+            <h1>一口で広がる、古雅な至宝。</h1>
+            <p>旬フルーツを纏う<br>極上のフルーツ飴専門店「蜜香」<br><br>りんご飴を始めとした<br>定番フルーツに加え<br>旬のフルーツ飴をお楽しみください。</p>
+        
+        </div>
+    </section>
+
+    <section id="about" class="fade-in-section">
+        <h2>お店について</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    「蜜香」は、日本全国から**最高のタイミングで収穫された旬のフルーツ**だけを厳選して使用しています。パリッと薄く仕上げた飴は、フルーツ本来の甘みと酸味を邪魔しない、**職人の技**が光る逸品です。
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="./about-store.jpg" alt="お店の内部または職人の写真">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="fade-in-section">
+        <h2>こだわりメニュー</h2>
+        <div class="menu-grid">
             
-            <section class="hero">
-                <div class="red-strip">
-                    Fruit candy & ice cream specialty store Fruit candy & ice cream specialty store Fruit candy & ice cream specialty store
+            <div class="menu-item">
+                <img src="./menu-apple.jpg" alt="りんご飴">
+                <div class="item-details">
+                    <h3>🍎 極上りんご飴</h3>
+                    <p>厳選した蜜入りりんごを、パリパリの飴でコーティング。最も人気のある「蜜香」の顔です。</p>
                 </div>
+            </div>
 
-                <div class="hero-main-content">
-                    
-                    <img src="./images/hero_grape_candy.png" alt="ぶどう飴の串" >
-                    
-                    <div class="hero-text-box">
-                        <span class="tag">100% 無添加</span>
-                        <p>大玉りんご使用!!</p>
-                        <h1>atom</h1>
-                        <p>フルーツ飴</p>
-                    </div>
+            <div class="menu-item">
+                <img src="./menu-strawberry.jpg" alt="いちご飴">
+                <div class="item-details">
+                    <h3>🍓 あまおう苺飴</h3>
+                    <p>甘さと酸味のバランスが絶妙な「あまおう」を贅沢に使用。一口サイズで食べやすい。</p>
                 </div>
+            </div>
 
-                <div class="red-strip">
-                    Fruit candy & ice cream specialty store Fruit candy & ice cream specialty store Fruit candy & ice cream specialty store
+            <div class="menu-item">
+                <img src="./menu-grape.jpg" alt="ぶどう飴">
+                <div class="item-details">
+                    <h3>🍇 シャインマスカット飴</h3>
+                    <p>皮ごと食べられる大粒マスカット。上品な香りと弾ける食感が楽しめます。</p>
                 </div>
-            </section>
-            
-            <section class="instagram-section">
-                <h2>Instagram</h2>
-                <div style="color: #666;">[ここにInstagramの埋め込みフィードが入ります]</div>
-            </section>
+            </div>
 
-            <section id="menu" class="section-container">
-                <h2 class="menu-title">MENU <span class="tag">おすすめメニュー</span></h2>
-                </section>
+        </div>
+        <p style="margin-top: 50px;"><a href="./menu.html" class="btn-primary">全メニューと料金を見る</a></p>
+    </section>
 
-            <section id="shop" class="section-container">
-                </section>
+    <section id="instagram" class="fade-in-section">
+        <h2><i class="fab fa-instagram"></i> 公式Instagram</h2>
+        <p style="margin-bottom: 30px;">最新の旬フルーツや限定メニューはこちらから！<br>ぜひフォローをお願いいたします。</p>
+        
+        <div class="insta-grid">
+            <div class="insta-placeholder">投稿1</div>
+            <div class="insta-placeholder">投稿2</div>
+            <div class="insta-placeholder">投稿3</div>
+            <div class="insta-placeholder">投稿4</div>
+            <div class="insta-placeholder">投稿5</div>
+            <div class="insta-placeholder">投稿6</div>
+        </div>
+        
+        <p style="margin-top: 30px;">
+            <a href="https://www.instagram.com/your_account_name/" target="_blank" class="btn-primary" style="background-color: #d62976; color: white;">Instagramをチェック</a>
+        </p>
+    </section>
 
-        </main>
-    </div> <footer>
-        <p>&copy; 2025 atom フルーツ飴. All Rights Reserved.</p>
-        <p><a href="privacy.html">プライバシーポリシー</a></p>
+    <section id="access" class="fade-in-section">
+        <h2>アクセス</h2>
+        
+        <div class="access-info">
+            <p><strong>【店舗名】</strong> フルーツ飴専門店 蜜香（みつか）</p>
+            <p><strong>【住所】</strong> 〒XXX-XXXX 東京都渋谷区XXX-XX-XX 1F</p>
+            <p><strong>【最寄駅】</strong> JR山手線 渋谷駅より <strong>徒歩5分</strong></p>
+            <p><strong>【営業時間】</strong> 11:00 ～ 19:00</p>
+            <p><strong>【定休日】</strong> 火曜日</p>
+            <p><strong>【電話番号】</strong> <a href="tel:0000000000" style="color: var(--primary-color); text-decoration: none;">00-0000-0000</a></p>
+        </div>
+        
+        <div style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 5px;">Googleマップ</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.828030230799!2d139.76472099999998!3d35.68949999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b857640209f%3A0x6d8b981f96431e5e!2z5p2x5Lyd6aeF!5e0!3m2!1sja!2sjp!4v1628173456789!5m2!1sja!2sjp" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 蜜香 (MITSUKA). All Rights Reserved.</p>
+        <div>
+            <a href="https://www.instagram.com/your_account_name/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> 
+            <a href="#"><i class="fab fa-twitter"></i> X</a> 
+            <a href="#"><i class="fab fa-line"></i> LINE</a>
+        </div>
     </footer>
 
-    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===================================
+            // 1. ヘッダーとヒーローコンテンツのアニメーション
+            // ===================================
+            const header = document.getElementById('main-header');
+            const heroContent = document.getElementById('hero-content');
+            
+            // ヘッダーをフェードイン
+            setTimeout(() => {
+                header.style.opacity = '1';
+            }, 50);
+
+            // ヒーローテキストを少し遅れてフェードイン（下から）
+            setTimeout(() => {
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 600);
+
+
+            // ===================================
+            // 2. ハンバーガーメニューの切り替え
+            // ===================================
+            const menuToggle = document.getElementById('menu-toggle');
+            const nav = document.getElementById('main-nav');
+            const body = document.body;
+
+            menuToggle.addEventListener('click', function() {
+                // メニューの表示・非表示を切り替え
+                nav.classList.toggle('open');
+                
+                // アイコンの切り替え
+                menuToggle.classList.toggle('fa-bars');
+                menuToggle.classList.toggle('fa-times');
+
+                // モバイルメニュー展開時に背景のスクロールを停止（オプション）
+                // body.classList.toggle('no-scroll');
+            });
+
+            // ナビゲーションリンクがクリックされたらメニューを閉じる
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    // 768px以下の画面でのみ動作
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('open');
+                        menuToggle.classList.add('fa-bars');
+                        menuToggle.classList.remove('fa-times');
+                        // body.classList.remove('no-scroll');
+                    }
+                });
+            });
+
+
+            // ===================================
+            // 3. スクロールによるセクションフェードイン
+            // ===================================
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            const checkVisibility = () => {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    // セクションが画面の約2/3の位置に来たらアニメーションをトリガー
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.classList.add('is-visible');
+                    }
+                });
+            };
+
+            // 初期チェックとスクロール/リサイズ時のチェックを設定
+            checkVisibility();
+            window.addEventListener('scroll', checkVisibility);
+            window.addEventListener('resize', checkVisibility);
+
+        });
+    </script>
+</body>
 </html>
