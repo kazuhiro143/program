@@ -1,475 +1,479 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍎 蜜香 - メニュー一覧</title>
-    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-    /* テーマカラーとフォント設定 (index.htmlと共通) */
-    :root {
-        --primary-color: #C5292A; /* 深みのあるキャンディレッド */
-        --secondary-color: #FFD700; /* ゴールド/キャラメル色 */
-        --text-color: #333333;
-        --bg-light: #5B453D; /* 背景全体の色 (シックな濃い茶色/木目調を表現) */
-        --content-bg: rgba(255, 255, 255, 0.9); /* コンテンツの背景色 (半透明の白) */
-        --font-main: 'Shippori Mincho', serif;
-        --font-sub: 'Poppins', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍎 蜜香 - メニュー一覧</title>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    /* テーマカラーとフォント設定 (index.htmlと共通) */
+    :root {
+        --primary-color: #C5292A; /* 深みのあるキャンディレッド */
+        --secondary-color: #FFD700; /* ゴールド/キャラメル色 */
+        --text-color: #333333;
+        --bg-light: #5B453D; /* 背景全体の色 (シックな濃い茶色/木目調を表現) */
+        --content-bg: rgba(255, 255, 255, 0.9); /* コンテンツの背景色 (半透明の白) */
+        --font-main: 'Shippori Mincho', serif;
+        --font-sub: 'Poppins', sans-serif;
+    }
 
-    /* リセットと基本スタイル (index.htmlと共通) */
-    body {
-        font-family: var(--font-main);
-        color: var(--text-color);
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-        
-        background-color: var(--bg-light);
-        background-image: url('wood-texture-bg.jpg'); 
-        background-repeat: repeat;
-        
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-        padding-top: 80px; /* ヘッダーの高さ分、コンテンツを下にずらす */
-    }
+    /* リセットと基本スタイル (index.htmlと共通) */
+    body {
+        font-family: var(--font-main);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        
+        background-color: var(--bg-light);
+        background-image: url('wood-texture-bg.jpg'); 
+        background-repeat: repeat;
+        
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        padding-top: 80px; /* ヘッダーの高さ分、コンテンツを下にずらす */
+    }
 
-    /* ヘッダー/ナビゲーション (index.htmlと共通) */
-    header {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 10px 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        width: 100%;
-        box-sizing: border-box; 
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+    /* ヘッダー/ナビゲーション (index.htmlと共通) */
+    header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 10px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        box-sizing: border-box; 
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-    .logo {
-        font-size: 1.8em;
-        font-weight: 700;
-        letter-spacing: 1px;
-        color: white;
-        flex-shrink: 0; 
-        z-index: 1001;
-    }
+    .logo {
+        font-size: 1.8em;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: white;
+        flex-shrink: 0; 
+        z-index: 1001;
+    }
 
-    nav {
-        display: flex;
-        flex-shrink: 0; 
-    }
+    nav {
+        display: flex;
+        flex-shrink: 0; 
+    }
 
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin-left: 20px;
-        font-family: var(--font-sub);
-        font-weight: 600;
-        transition: color 0.3s;
-        font-size: 0.95em;
-    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-family: var(--font-sub);
+        font-weight: 600;
+        transition: color 0.3s;
+        font-size: 0.95em;
+    }
 
-    nav a:hover, nav a.active { 
-        color: var(--secondary-color);
-    }
+    nav a:hover, nav a.active { 
+        color: var(--secondary-color);
+    }
 
-    .menu-toggle {
-        display: none; 
-        cursor: pointer;
-        font-size: 1.8em;
-        margin-left: 15px; 
-        flex-shrink: 0;
-        z-index: 1001;
-    }
-    
-    /* コンテンツエリアの基本設定 (カテゴリごとに利用する白枠) */
-    .menu-category-content {
-        padding: 40px 5%;
-        margin: 20px auto; /* 上下に間隔を空け、背景色(木目)を見せる */
-        max-width: 1100px;
-        background-color: var(--content-bg);
-        border-radius: 10px; 
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-    }
+    .menu-toggle {
+        display: none; 
+        cursor: pointer;
+        font-size: 1.8em;
+        margin-left: 15px; 
+        flex-shrink: 0;
+        z-index: 1001;
+    }
+    
+    /* コンテンツエリアの基本設定 (カテゴリごとに利用する白枠) */
+    .menu-category-content {
+        padding: 40px 5%;
+        margin: 20px auto; /* 上下に間隔を空け、背景色(木目)を見せる */
+        max-width: 1100px;
+        background-color: var(--content-bg);
+        border-radius: 10px; 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
+    }
 
-    /* タイトル */
-    .page-title {
-        font-family: var(--font-main);
-        font-size: 3em;
-        color: var(--primary-color);
-        text-align: center;
-        margin-bottom: 50px;
-        padding-bottom: 10px;
-        border-bottom: 4px double var(--secondary-color);
-        display: block; /* ブロック要素にして中央揃えを維持 */
-        width: 80%;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    /* メニューカテゴリー */
-    .menu-category {
-        text-align: center;
-        margin-bottom: 30px; /* カテゴリータイトルとグリッドの間隔 */
-    }
-    
-    .category-title {
-        font-family: var(--font-main);
-        font-size: 2.2em; /* シンプルなタイトルに合わせて少し大きく */
-        color: var(--primary-color);
-        margin-bottom: 40px;
-        border-bottom: 3px solid var(--secondary-color);
-        display: inline-block;
-        padding-bottom: 5px;
-    }
-    /* 追加：カテゴリータイトル上に余白を設け、ページタイトルとの区切りを明確に */
-    .menu-category:not(:first-child) {
-        padding-top: 30px;
-    }
+    /* タイトル */
+    .page-title {
+        font-family: var(--font-main);
+        font-size: 3em;
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+        border-bottom: 4px double var(--secondary-color);
+        display: block; /* ブロック要素にして中央揃えを維持 */
+        width: 80%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* メニューカテゴリー */
+    .menu-category {
+        text-align: center;
+        margin-bottom: 30px; /* カテゴリータイトルとグリッドの間隔 */
+    }
+    
+    .category-title {
+        font-family: var(--font-main);
+        font-size: 2.2em; /* シンプルなタイトルに合わせて少し大きく */
+        color: var(--primary-color);
+        margin-bottom: 40px;
+        border-bottom: 3px solid var(--secondary-color);
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+    /* 追加：カテゴリータイトル上に余白を設け、ページタイトルとの区切りを明確に */
+    .menu-category:not(:first-child) {
+        padding-top: 30px;
+    }
 
-    /* メニューグリッド (index.htmlのmenu-gridを流用) */
-    .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        margin-top: 30px;
-    }
+    /* メニューグリッド (index.htmlのmenu-gridを流用) */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
 
-    .menu-item {
-        background-color: white;
-        border: 1px solid #eee;
-        border-radius: 10px;
-        overflow: hidden;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    .menu-item {
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-    .menu-item:hover {
-        transform: translateY(-7px);
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-    }
+    .menu-item:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
 
-    .menu-item img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-        border-bottom: 5px solid var(--primary-color);
-    }
+    .menu-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 5px solid var(--primary-color);
+    }
 
-    .item-details {
-        padding: 20px;
-    }
+    .item-details {
+        padding: 20px;
+    }
 
-    .item-details h3 {
-        font-family: var(--font-main);
-        color: var(--primary-color);
-        margin-top: 0;
-        font-size: 1.5em;
-        line-height: 1.2;
-    }
+    .item-details h3 {
+        font-family: var(--font-main);
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.5em;
+        line-height: 1.2;
+    }
 
-    .item-details p {
-        font-family: var(--font-main);
-        font-size: 0.9em;
-        color: var(--text-color);
-        margin: 5px 0 15px 0;
-    }
-    
-    .price {
-        font-family: var(--font-sub);
-        font-size: 1.4em;
-        font-weight: 700;
-        color: var(--primary-color);
-        display: block;
-        margin-top: 10px;
-    }
+    .item-details p {
+        font-family: var(--font-main);
+        font-size: 0.9em;
+        color: var(--text-color);
+        margin: 5px 0 15px 0;
+    }
+    
+    .price {
+        font-family: var(--font-sub);
+        font-size: 1.4em;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+        margin-top: 10px;
+    }
 
-    /* フッター (index.htmlと共通) */
-    footer {
-        background-color: var(--primary-color);
-        color: white;
-        padding: 40px 5%;
-        text-align: center;
-        margin-top: 30px;
-    }
+    /* フッター (index.htmlと共通) */
+    footer {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 40px 5%;
+        text-align: center;
+        margin-top: 30px;
+    }
 
-    footer p {
-        margin: 5px 0;
-        font-family: var(--font-sub);
-        font-size: 0.9em;
-    }
-    footer a {
-        color: var(--secondary-color);
-        text-decoration: none;
-        margin: 0 10px;
-        transition: color 0.3s;
-    }
-    footer a:hover {
-        color: white;
-    }
+    footer p {
+        margin: 5px 0;
+        font-family: var(--font-sub);
+        font-size: 0.9em;
+    }
+    footer a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+    footer a:hover {
+        color: white;
+    }
 
-    /* ====================================
-       モバイル対応 (Media Queries)
-       ==================================== */
+    /* ====================================
+       モバイル対応 (Media Queries)
+       ==================================== */
 
-    @media (max-width: 768px) {
-        
-        body {
-            padding-top: 60px;
-        }
+    @media (max-width: 768px) {
+        
+        body {
+            padding-top: 60px;
+        }
 
-        header {
-            padding: 10px 20px; 
-        }
-        
-        nav {
-            display: none; 
-            flex-direction: column; 
-            position: absolute; 
-            top: 100%; 
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-color); 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        nav.open {
-            display: flex; 
-        }
+        header {
+            padding: 10px 20px; 
+        }
+        
+        nav {
+            display: none; 
+            flex-direction: column; 
+            position: absolute; 
+            top: 100%; 
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav.open {
+            display: flex; 
+        }
 
-        nav a {
-            margin: 0;
-            padding: 15px 20px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: left;
-        }
+        nav a {
+            margin: 0;
+            padding: 15px 20px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
 
-        .menu-toggle {
-            display: block; 
-            margin-left: auto; 
-        }
-        
-        .menu-category-content {
-            padding: 20px 5%; 
-            margin: 15px 10px;
-        }
-        
-        .page-title {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-        }
-        
-        .category-title {
-            font-size: 1.8em;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+        .menu-toggle {
+            display: block; 
+            margin-left: auto; 
+        }
+        
+        .menu-category-content {
+            padding: 20px 5%; 
+            margin: 15px 10px;
+        }
+        
+        .page-title {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+        
+        .category-title {
+            font-size: 1.8em;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
 
-        .menu-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        
-        .menu-item img {
-            height: 180px;
-        }
-    }
+        .menu-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .menu-item img {
+            height: 180px;
+        }
+    }
 </style>
 </head>
 <body>
-    
-    <header id="main-header">
-        <div class="logo">🍎 蜜香</div>
-        <i class="fas fa-bars menu-toggle" id="menu-toggle"></i>
-        <nav id="main-nav">
-            <a href="index.html#about">お店について</a>
-            <a href="#top" class="active">メニュー</a> 
-            <a href="index.html#instagram">Instagram</a>
-            <a href="index.html#access">アクセス</a>
-            <a href="tel:00-0000-0000">📞 電話</a>
-        </nav>
-    </header>
+    
+    <header id="main-header">
+        <div class="logo">🍎 蜜香</div>
+        <i class="fas fa-bars menu-toggle" id="menu-toggle"></i>
+        <nav id="main-nav">
+            <a href="index.html#about">お店について</a>
+            <a href="#top" class="active">メニュー</a> 
+            <a href="index.html#instagram">Instagram</a>
+            <a href="index.html#access">アクセス</a>
+            <a href="tel:00-0000-0000">📞 電話</a>
+        </nav>
+    </header>
 
-     <main>
-        <h1 class="page-title" id="top">🍎 蜜香 | 全メニュー</h1>
-        
-        <div class="menu-category-content">
-            <div class="menu-category">
-                <h2 class="category-title">定番メニュー</h2>
-                <div class="menu-grid">
-                    
-                    <div class="menu-item">
-                        <img src="./menu-apple.jpg" alt="極上りんご飴">
-                        <div class="item-details">
-                            <h3>🍎 極上りんご飴</h3>
-                            <p>青森産の蜜入りりんごを厳選。パリッとした食感と、りんごの甘酸っぱさが絶妙。</p>
-                            <span class="price">¥850 (税込)</span>
-                        </div>
-                    </div>
+   <main>
+        <h1 class="page-title" id="top">🍎 蜜香 | 全メニュー</h1>
+        
+        <div class="menu-category-content">
+            <div class="menu-category">
+                <h2 class="category-title">定番メニュー</h2>
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <img src="./menu-apple.jpg" alt="極上りんご飴">
+                        <div class="item-details">
+                            <h3>🍎 極上りんご飴</h3>
+                            <p>青森産の蜜入りりんごを厳選。パリッとした食感と、りんごの甘酸っぱさが絶妙。</p>
+                            <span class="price">¥850 (税込)</span>
+                        </div>
+                    </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-strawberry.jpg" alt="あまおう苺飴">
-                        <div class="item-details">
-                            <h3>🍓 あまおう苺飴</h3>
-                            <p>福岡産あまおうを贅沢に一口サイズに。フレッシュな果汁と繊細な飴の薄さをご堪能ください。</p>
-                            <span class="price">¥780 (税込)</span>
-                        </div>
-                    </div>
+                    <div class="menu-item">
+                        <img src="./menu-strawberry.jpg" alt="あまおう苺飴">
+                        <div class="item-details">
+                            <h3>🍓 あまおう苺飴</h3>
+                            <p>福岡産あまおうを贅沢に一口サイズに。フレッシュな果汁と繊細な飴の薄さをご堪能ください。</p>
+                            <span class="price">¥780 (税込)</span>
+                        </div>
+                    </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-grape.jpg" alt="シャインマスカット飴">
-                        <div class="item-details">
-                            <h3>🍇 シャインマスカット飴</h3>
-                            <p>宝石のような輝き。皮ごと食べられる大粒マスカットの上品な香りが人気です。</p>
-                            <span class="price">¥920 (税込)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class="menu-item">
+                        <img src="./menu-grape.jpg" alt="シャインマスカット飴">
+                        <div class="item-details">
+                            <h3>🍇 シャインマスカット飴</h3>
+                            <p>宝石のような輝き。皮ごと食べられる大粒マスカットの上品な香りが人気です。</p>
+                            <span class="price">¥920 (税込)</span>
+                        </div>
+                    </div>
 
-        <div class="menu-category-content">
-            <div class="menu-category">
-                <h2 class="category-title">季節限定メニュー</h2>
-                <div class="menu-grid">
-                    
-                    <div class="menu-item">
-                        <img src="./menu-persimmon.jpg" alt="柿飴">
-                        <div class="item-details">
-                            <h3>🧡 とろける柿飴</h3>
-                            <p>熟した甘柿を贅沢に使用。ねっとりとした食感と深い甘みが飴と絡み合います。</p>
-                            <span class="price">¥880 (税込)</span>
-                        </div>
-                    </div>
+                                </div>
+            </div>
+        </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-fig.jpg" alt="いちじく飴">
-                        <div class="item-details">
-                            <h3>💜 無花果（いちじく）飴</h3>
-                            <p>プチプチとした食感が楽しいイチジク。赤ワインを思わせる高貴な香りが特徴。</p>
-                            <span class="price">¥950 (税込)</span>
-                        </div>
-                    </div>
+        <div class="menu-category-content">
+            <div class="menu-category">
+                <h2 class="category-title">季節限定メニュー</h2>
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <img src="./menu-persimmon.jpg" alt="柿飴">
+                        <div class="item-details">
+                            <h3>🧡 とろける柿飴</h3>
+                            <p>熟した甘柿を贅沢に使用。ねっとりとした食感と深い甘みが飴と絡み合います。</p>
+                            <span class="price">¥880 (税込)</span>
+                        </div>
+                    </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-pear.jpg" alt="洋梨飴">
-                        <div class="item-details">
-                            <h3>🍐 ラ・フランス洋梨飴</h3>
-                            <p>芳醇な香りのラ・フランスを贅沢に。口溶けの良いなめらかな食感が楽しめます。</p>
-                            <span class="price">¥900 (税込)</span>
-                        </div>
-                    </div>
+                    <div class="menu-item">
+                        <img src="./menu-fig.jpg" alt="いちじく飴">
+                        <div class="item-details">
+                            <h3>💜 無花果（いちじく）飴</h3>
+                            <p>プチプチとした食感が楽しいイチジク。赤ワインを思わせる高貴な香りが特徴。</p>
+                            <span class="price">¥950 (税込)</span>
+                        </div>
+                    </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-kiwi.jpg" alt="キウイ飴">
-                        <div class="item-details">
-                            <h3>💚 完熟ゴールドキウイ飴</h3>
-                            <p>甘さの強い完熟キウイ。種の食感とトロピカルな風味が人気の一品です。</p>
-                            <span class="price">¥750 (税込)</span>
-                        </div>
-                    </div>
+                    <div class="menu-item">
+                        <img src="./menu-pear.jpg" alt="洋梨飴">
+                        <div class="item-details">
+                            <h3>🍐 ラ・フランス洋梨飴</h3>
+                            <p>芳醇な香りのラ・フランスを贅沢に。口溶けの良いなめらかな食感が楽しめます。</p>
+                            <span class="price">¥900 (税込)</span>
+                        </div>
+                    </div>
 
-                                        <div class="menu-item">
-                        <img src="./menu-mikan.jpg" alt="みかん飴">
-                        <div class="item-details">
-                            <h3>🍊 愛媛みかん飴</h3>
-                            <p>甘さの濃い愛媛みかんを丸ごと使用。口の中でじゅわっと広がる爽やかな果汁が特徴。</p>
-                            <span class="price">¥800 (税込)</span>
-                        </div>
-                    </div>
-                                                            <div class="menu-item">
-                        <img src="./menu-peach.jpg" alt="桃飴">
-                        <div class="item-details">
-                            <h3>🍑 白桃飴 (夏季限定)</h3>
-                            <p>夏の女王、とろける白桃を使用。繊細な甘さとみずみずしさが口いっぱいに広がります。</p>
-                            <span class="price">¥1,200 (税込)</span>
-                        </div>
-                    </div>
-                                    </div>
-               
-            </div>
-        </div>
+                    <div class="menu-item">
+                        <img src="./menu-kiwi.jpg" alt="キウイ飴">
+                        <div class="item-details">
+                            <h3>💚 完熟ゴールドキウイ飴</h3>
+                            <p>甘さの強い完熟キウイ。種の食感とトロピカルな風味が人気の一品です。</p>
+                            <span class="price">¥750 (税込)</span>
+                        </div>
+                    </div>
+                  
+                  　<div class="menu-item">
+                        <img src="./menu-peach.jpg" alt="桃飴">
+                        <div class="item-details">
+                            <h3>🍑 白桃飴 (夏季限定)</h3>
+                            <p>夏の女王、とろける白桃を使用。繊細な甘さとみずみずしさが口いっぱいに広がります。</p>
+                            <span class="price">¥1,200 (税込)</span>
+                        </div>
+                    </div>
 
-        <div class="menu-category-content">
-            <div class="menu-category">
-                <h2 class="category-title">プレミアムメニュー</h2>
-                <div class="menu-grid">
-                    
-                    <div class="menu-item">
-                        <img src="./menu-hojicha.jpg" alt="ほうじ茶りんご飴">
-                        <div class="item-details">
-                            <h3>🍵 ほうじ茶りんご飴</h3>
-                            <p>パリパリの飴にほうじ茶パウダーをブレンド。和の香ばしさが広がる大人の味わい。</p>
-                            <span class="price">¥980 (税込)</span>
-                        </div>
-                    </div>
+                  　<div class="menu-item">
+                        <img src="./menu-mikan.jpg" alt="みかん飴">
+                        <div class="item-details">
+                            <h3>🍊 愛媛みかん飴</h3>
+                            <p>甘さの濃い愛媛みかんを丸ごと使用。口の中でじゅわっと広がる爽やかな果汁が特徴。</p>
+                            <span class="price">¥800 (税込)</span>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-chocolate.jpg" alt="チョコレート苺飴">
-                        <div class="item-details">
-                            <h3>🍫 プレミアム生チョコ苺飴</h3>
-                            <p>苺飴の上に濃厚な生チョコレートをコーティング。冬限定の贅沢な組み合わせ。</p>
-                            <span class="price">¥1,100 (税込)</span>
-                        </div>
-                    </div>
+        <div class="menu-category-content">
+            <div class="menu-category">
+                <h2 class="category-title">プレミアムメニュー</h2>
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <img src="./menu-hojicha.jpg" alt="ほうじ茶りんご飴">
+                        <div class="item-details">
+                            <h3>🍵 ほうじ茶りんご飴</h3>
+                            <p>パリパリの飴にほうじ茶パウダーをブレンド。和の香ばしさが広がる大人の味わい。</p>
+                            <span class="price">¥980 (税込)</span>
+                        </div>
+                    </div>
 
-                    <div class="menu-item">
-                        <img src="./menu-pine.jpg" alt="パイナップル飴">
-                        <div class="item-details">
-                            <h3>🍍 完熟パイナップル飴</h3>
-                            <p>芯まで甘い完熟パイン。シャキシャキとした食感と、夏を思わせるジューシーさが魅力。</p>
-                            <span class="price">¥850 (税込)</span>
-                        </div>
-                    </div>
+                    <div class="menu-item">
+                        <img src="./menu-chocolate.jpg" alt="チョコレート苺飴">
+                        <div class="item-details">
+                            <h3>🍫 プレミアム生チョコ苺飴</h3>
+                            <p>苺飴の上に濃厚な生チョコレートをコーティング。冬限定の贅沢な組み合わせ。</p>
+                            <span class="price">¥1,100 (税込)</span>
+                        </div>
+                    </div>
 
-                </div>
-            </div>
-        </div>
-    </main>
+                    <div class="menu-item">
+                        <img src="./menu-pine.jpg" alt="パイナップル飴">
+                        <div class="item-details">
+                            <h3>🍍 完熟パイナップル飴</h3>
+                            <p>芯まで甘い完熟パイン。シャキシャキとした食感と、夏を思わせるジューシーさが魅力。</p>
+                            <span class="price">¥850 (税込)</span>
+                        </div>
+                    </div>
 
-    <footer>
-        <p>© 2025 蜜香 (MITSUKA). All Rights Reserved.</p>
-        <div>
-            <a href="https://www.instagram.com/your_account_name/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> 
-            <a href="#"><i class="fab fa-twitter"></i> X</a> 
-            <a href="#"><i class="fab fa-line"></i> LINE</a>
-        </div>
-    </footer>
+                    
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ===================================
-            // ハンバーガーメニューの切り替え
-            // ===================================
-            const menuToggle = document.getElementById('menu-toggle');
-            const nav = document.getElementById('main-nav');
-            
-            menuToggle.addEventListener('click', function() {
-                nav.classList.toggle('open');
-                menuToggle.classList.toggle('fa-bars');
-                menuToggle.classList.toggle('fa-times');
-            });
+                </div>
+            </div>
+        </div>
+    </main>
 
-            // ナビゲーションリンクがクリックされたらメニューを閉じる
-            nav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        nav.classList.remove('open');
-                        menuToggle.classList.add('fa-bars');
-                        menuToggle.classList.remove('fa-times');
-                    }
-                });
-            });
-        });
-    </script>
+    <footer>
+        <p>© 2025 蜜香 (MITSUKA). All Rights Reserved.</p>
+        <div>
+            <a href="https://www.instagram.com/your_account_name/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a> 
+            <a href="#"><i class="fab fa-twitter"></i> X</a> 
+            <a href="#"><i class="fab fa-line"></i> LINE</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===================================
+            // ハンバーガーメニューの切り替え
+            // ===================================
+            const menuToggle = document.getElementById('menu-toggle');
+            const nav = document.getElementById('main-nav');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+                menuToggle.classList.toggle('fa-bars');
+                menuToggle.classList.toggle('fa-times');
+            });
+
+            // ナビゲーションリンクがクリックされたらメニューを閉じる
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        nav.classList.remove('open');
+                        menuToggle.classList.add('fa-bars');
+                        menuToggle.classList.remove('fa-times');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
